@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+import emailjs from "@emailjs/browser";
 import {
   TrendingUp,
   Landmark,
@@ -80,6 +81,7 @@ const FIELDS = [
 ];
 
 export default function PolicyPlansEnquiry() {
+  const form = useRef(null);
   const [formData, setFormData] = useState({
     name: "",
     mobile: "",
@@ -99,10 +101,38 @@ export default function PolicyPlansEnquiry() {
     setFormData((prev) => ({ ...prev, [key]: e.target.value }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  
+  try {
+    const result = await emailjs.sendForm(
+      import.meta.env.VITE_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+      form.current,
+      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+    );
+
+    console.log("SUCCESS:", result);
+
     setSubmitted(true);
-  };
+
+    setFormData({
+      name: "",
+      mobile: "",
+      email: "",
+      enquiryType: "",
+      message: "",
+    });
+
+    // Reset the actual form elements
+    form.current.reset();
+
+  } catch (error) {
+    console.error("EmailJS Error:", error);
+    alert("Failed to send enquiry.");
+  }
+  
+};
 
   return (
     <div className="min-h-screen bg-slate-100 p-4 md:p-8">
@@ -167,7 +197,7 @@ export default function PolicyPlansEnquiry() {
           </p>
           <div className="mt-2 h-1 w-12 rounded-full bg-amber-400" />
 
-          <form onSubmit={handleSubmit} className="mt-6 space-y-5">
+          <form ref={form} onSubmit={handleSubmit} className="mt-6 space-y-5">
             {FIELDS.map(({ key, label, type, as }) => (
               <div key={key}>
                 <label
@@ -179,6 +209,7 @@ export default function PolicyPlansEnquiry() {
                 {as === "textarea" ? (
                   <textarea
                     id={key}
+                    name="message"
                     rows={4}
                     value={formData[key]}
                     onChange={handleChange(key)}
@@ -187,6 +218,17 @@ export default function PolicyPlansEnquiry() {
                 ) : (
                   <input
                     id={key}
+                    name={
+                     key === "name"
+                     ? "user_name"
+                     : key === "mobile"
+                     ? "user_phone"
+                     : key === "email"
+                     ? "user_email"
+                     : key === "enquiryType"
+                     ? "enquiry_type"
+                     : key
+                    }
                     type={type}
                     value={formData[key]}
                     onChange={handleChange(key)}
