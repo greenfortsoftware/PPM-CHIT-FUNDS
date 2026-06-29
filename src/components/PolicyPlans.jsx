@@ -105,32 +105,42 @@ export default function PolicyPlansEnquiry() {
   e.preventDefault();
   
   try {
-    const result = await emailjs.sendForm(
-      import.meta.env.VITE_EMAILJS_SERVICE_ID,
-      import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-      form.current,
-      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-    );
+  // Send enquiry to admin
+  const adminResponse = await emailjs.sendForm(
+    import.meta.env.VITE_EMAILJS_SERVICE_ID,
+    import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+    form.current,
+    import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+  );
 
-    console.log("SUCCESS:", result);
+  console.log("Admin Email Sent:", adminResponse);
 
-    setSubmitted(true);
+  // Send auto-reply to customer
+  const autoReplyResponse = await emailjs.sendForm(
+    import.meta.env.VITE_EMAILJS_SERVICE_ID,
+    import.meta.env.VITE_EMAILJS_AUTOREPLY_TEMPLATE_ID,
+    form.current,
+    import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+  );
 
-    setFormData({
-      name: "",
-      mobile: "",
-      email: "",
-      enquiryType: "",
-      message: "",
-    });
+  console.log("Auto Reply Sent:", autoReplyResponse);
 
-    // Reset the actual form elements
-    form.current.reset();
+  setSubmitted(true);
 
-  } catch (error) {
-    console.error("EmailJS Error:", error);
-    alert("Failed to send enquiry.");
-  }
+  setFormData({
+    name: "",
+    mobile: "",
+    email: "",
+    enquiryType: "",
+    message: "",
+  });
+
+  form.current.reset();
+
+} catch (error) {
+  console.error("EmailJS Error:", error);
+  alert("Failed to send enquiry.");
+} 
   
 };
 
