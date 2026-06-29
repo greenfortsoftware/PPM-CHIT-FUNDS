@@ -1,8 +1,10 @@
 const Footer = () => {
   return (
-    <footer className="d-flex justify-content-center align-items-center bg-blue-950 text-white py-2 text-center">
-      <p>© 2025 LIC India. All Rights Reserved.</p>
-    </footer>
+    <div className="bg-[#0f2044] py-4 text-center">
+      <p className="text-sm text-[#a8b8d8]">
+        © 2025 Shengai PPM Chit Funds Pvt Ltd. All Rights Reserved.
+      </p>
+    </div>
   );
 };
 

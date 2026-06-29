@@ -38,7 +38,7 @@ function App() {
         <Route path="/about" element={<AboutUs />} />
         <Route path="/policies" element={<Policies />} />
         <Route path="/services" element={<Services />} />
-        <Route path="/claims" element={<Claims />} />
+        {/* <Route path="/claims" element={<Claims />} /> */}
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/contact" element={<ContactUs />} />
         <Route path="*" element={<Home />} />
