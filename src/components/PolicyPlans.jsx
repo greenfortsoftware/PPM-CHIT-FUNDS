@@ -379,6 +379,8 @@ export default function PolicyPlansEnquiry() {
   const [submitted, setSubmitted] = useState(false);
   const [showAll, setShowAll] = useState(false);
   const [errors, setErrors] = useState({});
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState("");
 
   const visiblePlans = showAll
     ? POLICY_PLANS
@@ -390,35 +392,46 @@ export default function PolicyPlansEnquiry() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const validationErrors = validate();
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      return;
-    }
-    setErrors({});
+  e.preventDefault();
+  const validationErrors = validate();
+  if (Object.keys(validationErrors).length > 0) {
+    setErrors(validationErrors);
+    return;
+  }
+  setErrors({});
+  setSendError("");
+  setSending(true);
+
+  try {
+    await emailjs.sendForm(
+      import.meta.env.VITE_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+      form.current,
+      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+    );
+
     try {
-      const result = await emailjs.sendForm(
+      await emailjs.sendForm(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        import.meta.env.VITE_EMAILJS_CUSTOMER_TEMPLATE_ID,
         form.current,
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       );
-      console.log("SUCCESS:", result);
-      setSubmitted(true);
-      setFormData({
-        name: "",
-        mobile: "",
-        email: "",
-        enquiryType: "",
-        message: "",
-      });
-      form.current.reset();
-    } catch (error) {
-      console.error("EmailJS Error:", error);
-      alert("Failed to send enquiry.");
+    } catch (confirmErr) {
+      console.warn("Customer confirmation failed:", confirmErr);
     }
-  };
+
+    setSubmitted(true);
+    setFormData({ name: "", mobile: "", email: "", enquiryType: "", message: "" });
+    form.current.reset();
+
+  } catch (error) {
+    console.error("EmailJS Error:", error);
+    setSendError("Failed to send. Please try again or call us directly.");
+  } finally {
+    setSending(false);
+  }
+};
 
   const validate = () => {
     const newErrors = {};
@@ -622,16 +635,22 @@ export default function PolicyPlansEnquiry() {
 
               <button
                 type="submit"
-                className="w-full rounded-lg bg-amber-400 py-3 text-sm font-bold uppercase tracking-wider text-blue-950 transition-colors hover:bg-amber-300"
-              >
-                Submit Enquiry
+                disabled={sending}
+               className="w-full rounded-lg bg-amber-400 py-3 text-sm font-bold uppercase tracking-wider text-blue-950 transition-colors hover:bg-amber-300 disabled:opacity-60 disabled:cursor-not-allowed"
+               >
+               {sending ? "Sending..." : "Submit Enquiry"}
               </button>
 
               {submitted && (
-                <p className="text-center text-sm text-emerald-400">
-                  Thanks! We've received your enquiry.
-                </p>
-              )}
+              <p className="text-center text-sm text-emerald-400">
+              Thanks! We've received your enquiry.
+             </p>
+             )}
+             {sendError && (
+              <p className="text-center text-sm text-red-400">
+             ⚠ {sendError}
+            </p>
+            )}
             </form>
           </div>
         </section>
