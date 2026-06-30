@@ -19,12 +19,12 @@ const Header = () => {
         <div className="flex flex-wrap justify-center sm:justify-end items-center gap-x-6 gap-y-2 text-xs sm:text-sm">
           <div className="flex items-center gap-2">
             <Phone size={14} />
-            <span>+91 81437 35490</span>
+            <span>+91 94437 35490</span>
           </div>
 
           <div className="flex items-center gap-2">
             <Mail size={14} />
-            <span>customer.services@licindia.com</span>
+            <span>shengaippmchits@gmail.com</span>
           </div>
         </div>
       </div>

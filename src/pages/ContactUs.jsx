@@ -1,12 +1,15 @@
 // Contact.jsx
 
-import { Phone, MessageCircle, Mail, PhoneCall } from "lucide-react";
+import { Phone, MessageCircle, Mail, MapPinned} from "lucide-react";
 
 const contactItems = [
   {
     icon: <Phone size={22} className="text-[#1F3F77]" />,
     title: "Call Us",
-    value: "+91 94437 35490",
+    value:  (<>+91 94437 35490<br />
+              +91 9788862013 <br />
+              +91 9443862790.
+            </>),
     subtitle: "Mon–Sat, 10AM–6PM",
     border: "border-[#1F3F77]",
   },
@@ -14,7 +17,7 @@ const contactItems = [
     icon: <MessageCircle size={22} className="text-green-600" />,
     title: "WhatsApp",
     value: "+91 94437 35490",
-    subtitle: "Chat anytime",
+    subtitle: "",
     border: "border-green-500",
   },
   {
@@ -25,10 +28,17 @@ const contactItems = [
     border: "border-green-500",
   },
   {
-    icon: <PhoneCall size={22} className="text-purple-600" />,
-    title: "Toll Free",
-    value: "1800 682 5433",
-    subtitle: "24×7 Helpline",
+    icon: <MapPinned size={22} className="text-purple-600" />,
+    title: "At Office",
+    value: (
+    <>
+      57/2, Upstairs,Vaniyar Street,<br />
+      Gandhi Road,  Sengottai,<br />
+      Tenkasi District – 627809,<br />
+      Tamil Nadu.
+    </>
+  ),
+    subtitle:"Mon–Sat, 10AM–6PM",
     border: "border-purple-500",
   },
 ];
