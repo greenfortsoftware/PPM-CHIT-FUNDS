@@ -424,10 +424,10 @@ export default function AboutUs() {
                     <Building className="w-4 h-4" /> Registered Office
                   </p>
                   <p className="text-gray-900 font-medium mb-1">
-                    57/2, Upstairs,
+                    57/2, Vaniyar Street(Upstairs),
                   </p>
-                  <p className="mb-1">Vaniyar Street, Gandhi Road,</p>
-                  <p className="mb-1">Sengottai, Tenkasi District – 627809,</p>
+                  <p className="mb-1"> Gandhi Road, Sengottai,</p>
+                  <p className="mb-1"> Tenkasi District – 627809,</p>
                   <p className="font-medium text-gray-950">Tamil Nadu.</p>
                 </div>
 

@@ -4,7 +4,7 @@ const CONTACT_COLUMNS = [
   {
     heading: "Call Us",
     icon: Phone,
-    lines: ["+91 94437 35490", "+91 9788862013, +91 9443862790."],
+    lines: ["+91 94437 35490", "+91 97888 62013", "+91 94438 62790."],
     note: "Mon–Sat (10AM – 6PM)",
   },
   {
@@ -23,7 +23,7 @@ const CONTACT_COLUMNS = [
     heading: "Office Address",
     icon: MapPin,
     lines: [
-      "57/2, Upstairs, Vaniyar Street",
+      "57/2, Vaniyar Street (Upstairs)",
       "gandhi road Sengottai - 627809",
       "Tenkasi (dt) -Tamilnadu",
     ],
