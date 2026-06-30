@@ -25,8 +25,8 @@ const DIRECTORS = [
   {
     name: "Mrs M. Arumugathammal Murugesan",
     role: "Director",
-    phone: "+91 98765 43211",
-    email: "ps@ppmchits.com",
+    phone: "+91 98765 43210",
+    email: "shengaippmchits@gmail.com",
     photo: "/images/mrs_murugesan.png",
   },
 ];
@@ -432,7 +432,7 @@ export default function AboutUs() {
                 </div>
 
                 {/* Branch Office */}
-                <div className="relative bg-gray-50/70 p-4 rounded-xl border border-gray-100 hover:border-[#F7B500]/40 hover:bg-amber-50/40 hover:-translate-y-1 hover:shadow-md transition-all duration-300 overflow-hidden group/card">
+                {/* <div className="relative bg-gray-50/70 p-4 rounded-xl border border-gray-100 hover:border-[#F7B500]/40 hover:bg-amber-50/40 hover:-translate-y-1 hover:shadow-md transition-all duration-300 overflow-hidden group/card">
                   <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-[#F7B500] group-hover/card:w-full transition-all duration-500"></div>
                   <p className="font-bold text-[#163F88] uppercase tracking-wider mb-1.5 text-xs flex items-center gap-1.5">
                     <Building className="w-4 h-4" /> Branch / Operational Office
@@ -441,7 +441,7 @@ export default function AboutUs() {
                   <p className="mb-1">K.C. Road,</p>
                   <p className="mb-1">Sengottai – 627809,</p>
                   <p className="font-medium text-gray-950">Tamil Nadu.</p>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

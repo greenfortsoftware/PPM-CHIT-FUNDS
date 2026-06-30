@@ -334,8 +334,8 @@ const POLICY_PLANS = [
 ];
 
 const CONTACT_INFO = [
-  { icon: Phone, label: "Phone", value: "+91 98765 43210" },
-  { icon: Mail, label: "Email", value: "support@company.com" },
+  { icon: Phone, label: "Phone", value: "+91 94437 35490" },
+  { icon: Mail, label: "Email", value: "shengaippmchits@gmail.com" },
   { icon: Clock, label: "Hours", value: "Mon–Sat, 9am–6pm" },
 ];
 
