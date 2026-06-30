@@ -4,7 +4,7 @@ const CONTACT_COLUMNS = [
   {
     heading: "Call Us",
     icon: Phone,
-    lines: ["+91 94437 35490", "+91 97888 62013", "+91 94438 62790."],
+    lines: ["+91 94437 35490", "+91 97888 62013", "+91 94438 62790"],
     note: "Mon–Sat (10AM – 6PM)",
   },
   {
