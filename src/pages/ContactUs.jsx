@@ -32,8 +32,8 @@ const contactItems = [
     title: "At Office",
     value: (
     <>
-      57/2, Upstairs,Vaniyar Street,<br />
-      Gandhi Road,  Sengottai,<br />
+      57/2, Vaniyar Street (Upstairs),<br />
+      Gandhi Road, Sengottai,<br />
       Tenkasi District – 627809,<br />
       Tamil Nadu.
     </>
