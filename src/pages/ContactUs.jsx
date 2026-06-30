@@ -7,8 +7,8 @@ const contactItems = [
     icon: <Phone size={22} className="text-[#1F3F77]" />,
     title: "Call Us",
     value:  (<>+91 94437 35490<br />
-              +91 9788862013 <br />
-              +91 9443862790.
+              +91 97888 62013 <br />
+              +91 94438 62790
             </>),
     subtitle: "Mon–Sat, 10AM–6PM",
     border: "border-[#1F3F77]",

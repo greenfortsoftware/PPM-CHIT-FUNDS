@@ -24,7 +24,7 @@ const Header = () => {
 
           <div className="flex items-center gap-2">
             <Mail size={14} />
-            <span>shengaippmchits@gmail.com</span>
+            <span><a href="mailto:shengaippmchits@gmail.com" className="text-decoration-none text-white">shengaippmchits@gmail.com</a></span>
           </div>
         </div>
       </div>

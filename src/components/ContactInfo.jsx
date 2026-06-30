@@ -23,8 +23,8 @@ const CONTACT_COLUMNS = [
     heading: "Office Address",
     icon: MapPin,
     lines: [
-      "57/2, Vaniyar Street ( Upstairs )",
-      "gandhi road Shencottah - 627809",
+      "57/2, Upstairs, Vaniyar Street",
+      "gandhi road Sengottai - 627809",
       "Tenkasi (dt) -Tamilnadu",
     ],
   },

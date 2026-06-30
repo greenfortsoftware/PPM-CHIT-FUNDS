@@ -18,14 +18,14 @@ const DIRECTORS = [
   {
     name: "Mr P. Murugesan",
     role: "Chief Lic Advisor, Star Health Insurance",
-    phone: "+91 98765 43210",
+    phone: "+91 94437 35490",
     email: "shengaippmchits@gmail.com",
     photo: "/images/murugesan.jpg",
   },
   {
     name: "Mrs M. Arumugathammal Murugesan",
     role: "Director",
-    phone: "+91 98765 43210",
+    phone: "+91 94437 35490",
     email: "shengaippmchits@gmail.com",
     photo: "/images/mrs_murugesan.png",
   },

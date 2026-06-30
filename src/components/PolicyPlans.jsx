@@ -595,8 +595,18 @@ export default function PolicyPlansEnquiry() {
                                 : key
                       }
                       type={type}
+                      inputMode={key === "mobile" ? "numeric" : undefined}
+                      maxLength={key === "mobile" ? 10 : undefined}
                       value={formData[key]}
-                      onChange={handleChange(key)}
+                      onChange={
+                        key === "mobile"
+                          ? (e) => {
+                              const digitsOnly = e.target.value.replace(/\D/g, "");
+                              setFormData((prev) => ({ ...prev, mobile: digitsOnly }));
+                              setErrors((prev) => ({ ...prev, mobile: "" }));
+                            }
+                          : handleChange(key)
+                      }
                       className="w-full rounded-lg border border-blue-800 bg-blue-900/60 px-3 py-2.5 text-sm text-white placeholder-blue-400 outline-none transition-colors focus:border-amber-400"
                     />
                     {/* ← Error goes here */}
