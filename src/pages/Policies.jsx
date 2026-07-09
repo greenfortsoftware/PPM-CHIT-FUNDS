@@ -175,6 +175,12 @@ const POLICIES = [
     headerText: "text-indigo-600",
     data: [
       {
+        name: "New Endowment",
+        plan: 714,
+        category: "Endowment",
+        age: "8–50 yrs",
+      },
+      {
         name: "Jeevan Anand",
         plan: 715,
         category: "Endowment",
