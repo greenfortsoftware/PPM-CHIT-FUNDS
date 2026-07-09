@@ -381,6 +381,7 @@ export default function PolicyPlansEnquiry() {
   const [errors, setErrors] = useState({});
   const [sending, setSending] = useState(false);
   const [sendError, setSendError] = useState("");
+  const [enquiryId, setEnquiryId] = useState("");
 
   const visiblePlans = showAll
     ? POLICY_PLANS
@@ -401,6 +402,9 @@ export default function PolicyPlansEnquiry() {
   setErrors({});
   setSendError("");
   setSending(true);
+
+const id = `ENQ-${String(Date.now()).slice(-6)}${Math.floor(Math.random() * 10)}`;
+setEnquiryId(id);
 
   try {
     await emailjs.sendForm(
@@ -642,7 +646,7 @@ export default function PolicyPlansEnquiry() {
                   </p>
                 )}
               </div>
-
+              <input type="hidden" name="enquiry_id" value={enquiryId} />
               <button
                 type="submit"
                 disabled={sending}
@@ -652,10 +656,16 @@ export default function PolicyPlansEnquiry() {
               </button>
 
               {submitted && (
-              <p className="text-center text-sm text-emerald-400">
-              Thanks! We've received your enquiry.
-             </p>
-             )}
+               <div className="text-center space-y-1">
+                <p className="text-sm text-emerald-400">
+                Thanks! We've received your enquiry.
+                </p>
+                <p className="text-xs text-blue-400">
+                 Reference ID:{" "}
+                <span className="text-amber-400 font-mono font-semibold">{enquiryId}</span>
+                </p>
+                </div>
+               )}
              {sendError && (
               <p className="text-center text-sm text-red-400">
              ⚠ {sendError}
