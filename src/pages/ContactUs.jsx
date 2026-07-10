@@ -1,16 +1,18 @@
-// Contact.jsx
-
-import { Phone, MessageCircle, Mail, MapPinned} from "lucide-react";
+import { Phone, MessageCircle, Mail, MapPinned } from "lucide-react";
 
 const contactItems = [
   {
     icon: <Phone size={22} className="text-[#1F3F77]" />,
     title: "Call Us",
-    value:  (<>+91 94437 35490<br />
-              +91 97888 62013 <br />
-              +91 94438 62790
-            </>),
-    subtitle: "Mon–Sat, 10AM–6PM",
+    value: (
+      <>
+        +91 94437 35490
+        <br />
+        +91 97888 62013 <br />
+        +91 94438 62790
+      </>
+    ),
+    subtitle: "Mon–Sat, 9AM–7PM (Sunday Holiday)",
     border: "border-[#1F3F77]",
   },
   {
@@ -31,14 +33,17 @@ const contactItems = [
     icon: <MapPinned size={22} className="text-purple-600" />,
     title: "At Office",
     value: (
-    <>
-      57/2, Vaniyar Street (Upstairs),<br />
-      Gandhi Road, Sengottai,<br />
-      Tenkasi District – 627809,<br />
-      Tamil Nadu.
-    </>
-  ),
-    subtitle:"Mon–Sat, 10AM–6PM",
+      <>
+        57/2, Vaniyar Street (Upstairs),
+        <br />
+        Gandhi Road, Sengottai,
+        <br />
+        Tenkasi District – 627809,
+        <br />
+        Tamil Nadu.
+      </>
+    ),
+    subtitle: "Mon–Sat, 9AM–7PM (Sunday Holiday)",
     border: "border-purple-500",
   },
 ];

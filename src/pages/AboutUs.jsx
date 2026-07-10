@@ -25,15 +25,15 @@ const DIRECTORS = [
   {
     name: "Mrs M. Arumugathammal Murugesan",
     role: "Director",
-    phone: "+91 94437 35490",
+    phone: "+91 96002 39697",
     email: "shengaippmchits@gmail.com",
     photo: "/images/mrs_murugesan.png",
   },
 ];
 
 const LEGAL_INFO = [
-  { label: "CIN", value: "U65992TN1997PTC038178" },
-  { label: "Registration No", value: "038178" },
+  // { label: "CIN", value: "U65992TN1997PTC038178" },
+  { label: "Certificate of Incorporation", value: "18-38166" },
   { label: "Date of Incorporation", value: "13 May 1997" },
   { label: "ROC", value: "Chennai" },
 ];
