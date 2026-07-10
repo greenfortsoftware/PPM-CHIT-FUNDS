@@ -408,20 +408,34 @@ const id = `ENQ-${String(Date.now()).slice(-6)}${Math.floor(Math.random() * 10)}
 setEnquiryId(id);
 
   try {
-    await emailjs.sendForm(
-      import.meta.env.VITE_EMAILJS_SERVICE_ID,
-      import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-      form.current,
-      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-    );
+    await emailjs.send(
+  import.meta.env.VITE_EMAILJS_SERVICE_ID,
+  import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+  {
+    user_name: formData.name,
+    user_phone: formData.mobile,
+    user_email: formData.email,
+    enquiry_type: formData.enquiryType,
+    message: formData.message,
+    enquiry_id: id,
+  },
+  import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+);
 
     try {
-      await emailjs.sendForm(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_CUSTOMER_TEMPLATE_ID,
-        form.current,
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-      );
+      await emailjs.send(
+      import.meta.env.VITE_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_EMAILJS_CUSTOMER_TEMPLATE_ID,
+      {
+        user_name: formData.name,
+       user_phone: formData.mobile,
+       user_email: formData.email,
+    enquiry_type: formData.enquiryType,
+    message: formData.message,
+    enquiry_id: id,
+  },
+  import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+);
     } catch (confirmErr) {
       console.warn("Customer confirmation failed:", confirmErr);
     }
@@ -545,7 +559,7 @@ setEnquiryId(id);
         {/*  Enquiry */}
         <section className="overflow-hidden rounded-2xl shadow-sm grid grid-cols-1 md:grid-cols-3">
           {/* Left info panel */}
-          <div className="bg-blue-900 p-8 flex flex-col gap-8">
+          <div className="bg-blue-900 p-8 flex flex-col gap-6 ">
             <div>
               <h2 className="text-2xl font-bold text-white">Enquiry</h2>
               <p className="mt-1 text-sm text-blue-300">
@@ -649,7 +663,6 @@ setEnquiryId(id);
                   </p>
                 )}
               </div>
-              <input type="hidden" name="enquiry_id" value={enquiryId} />
               <button
                 type="submit"
                 disabled={sending}
@@ -664,8 +677,8 @@ setEnquiryId(id);
                 Thanks! We've received your enquiry.
                 </p>
                 <p className="text-xs text-blue-400">
-                 Reference ID:{" "}
-                <span className="text-amber-400 font-mono font-semibold">{enquiryId}</span>
+                 Enquiry ID:{" "}
+                <span className="text-amber-400 font-mono font-semibold" >{enquiryId}</span>
                 </p>
                 </div>
                )}
