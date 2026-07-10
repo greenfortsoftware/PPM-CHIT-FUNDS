@@ -257,6 +257,7 @@
 
 import { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
+import ChitPlans from "./ChitPlans";
 import {
   TrendingUp,
   Landmark,
@@ -472,6 +473,8 @@ setEnquiryId(id);
   };
 
   return (
+  <>
+    <ChitPlans />
     <div className="min-h-screen bg-slate-100 p-4 md:p-8">
       <div className="mx-auto flex w-full max-w-5xl flex-col gap-8">
         {/* Policy Plans*/}
@@ -676,5 +679,6 @@ setEnquiryId(id);
         </section>
       </div>
     </div>
+  </>
   );
 }
