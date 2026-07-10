@@ -6,6 +6,7 @@ import {
   Heart,
   Wallet,
   Landmark,
+  HandCoins
 } from "lucide-react";
 
 const POLICIES = [
@@ -225,6 +226,27 @@ const POLICIES = [
       },
     ],
   },
+  {
+    title: "Micro",
+    icon: HandCoins,
+    color: "text-yellow-600",
+    headerBg: "bg-yellow-50",
+    headerText: "text-yellow-600",
+    data: [
+      {
+        name: "Micro Bachat",
+        plan: 751,
+        category: "Micro",
+        age: "18–55 yrs",
+      },
+      {
+        name: "Jan Suraksha",
+        plan: 721,
+        category: "Micro",
+        age: "18–55 yrs",
+      },
+    ],
+  },
 ];
 
 const PolicyTable = ({ data, headerBg, headerText }) => (
@@ -313,11 +335,13 @@ const Policies = () => {
 
         {/* Policy Grid */}
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-          {POLICIES.map(
+          {POLICIES.slice(0, 7).map(
             ({ title, icon: Icon, color, headerBg, headerText, data }) => (
               <div
-                key={title}
-                className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden"
+               key={title}
+               className={`bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden ${
+               title === "Micro" ? "self-start" : ""
+                }`}
               >
                 {/* Card header */}
                 <div className="flex items-center gap-3 px-5 py-4">
@@ -343,21 +367,33 @@ const Policies = () => {
           )}
 
           {/* CTA card */}
-          <div className="bg-[#163F88] rounded-2xl shadow-sm overflow-hidden flex flex-col justify-between p-6 gap-6">
-            <div>
-              <h2 className="text-white text-2xl font-bold leading-snug">
-                Plan Today for a<br />
-                Secure Tomorrow
-              </h2>
-              <p className="text-blue-200 text-sm mt-3 leading-relaxed">
-                LIC offers a variety of plans to help you protect what matters
-                most and build a better future for your loved ones.
-              </p>
-            </div>
-            {/* <button className="flex items-center gap-2 bg-[#163F88] border-2 border-white text-white font-semibold px-5 py-2.5 rounded-lg w-fit hover:bg-white hover:text-[#163F88] transition-colors text-sm">
-              Explore Policies →
-            </button> */}
+          <div className="flex flex-col gap-6">
+  {(() => {
+    const micro = POLICIES[7];
+    return (
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden ">
+        <div className="flex items-center gap-3 px-5 py-4">
+          <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${micro.headerBg}`}>
+            <micro.icon className={`w-5 h-5 ${micro.color}`} />
           </div>
+          <h2 className={`text-lg font-bold ${micro.color}`}>{micro.title}</h2>
+        </div>
+        <div className="overflow-x-auto">
+          <PolicyTable data={micro.data} headerBg={micro.headerBg} headerText={micro.headerText} />
+        </div>
+      </div>
+    );
+  })()}
+
+  <div className="bg-[#163F88] rounded-2xl shadow-sm p-6 flex flex-col gap-4 grow">
+    <h2 className="text-white text-2xl font-bold leading-snug">
+      Plan Today for a<br />Secure Tomorrow
+    </h2>
+    <p className="text-blue-200 text-sm leading-relaxed">
+      LIC offers a variety of plans to help you protect what matters most and build a better future for your loved ones.
+    </p>
+  </div>
+</div>
         </div>
       </main>
     </>
