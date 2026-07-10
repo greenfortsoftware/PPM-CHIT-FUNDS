@@ -125,6 +125,7 @@ export default function PolicyPlansEnquiry() {
   const [errors, setErrors] = useState({});
   const [sending, setSending] = useState(false);
   const [sendError, setSendError] = useState("");
+  const [enquiryId, setEnquiryId] = useState("");
 
   const visiblePlans = showAll
     ? POLICY_PLANS
@@ -136,15 +137,26 @@ export default function PolicyPlansEnquiry() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const validationErrors = validate();
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      return;
-    }
-    setErrors({});
-    setSendError("");
-    setSending(true);
+  e.preventDefault();
+  const validationErrors = validate();
+  if (Object.keys(validationErrors).length > 0) {
+    setErrors(validationErrors);
+    return;
+  }
+  setErrors({});
+  setSendError("");
+  setSending(true);
+
+const id = `ENQ-${String(Date.now()).slice(-6)}${Math.floor(Math.random() * 10)}`;
+setEnquiryId(id);
+
+  try {
+    await emailjs.sendForm(
+      import.meta.env.VITE_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+      form.current,
+      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+    );
 
     try {
       await emailjs.sendForm(
@@ -416,15 +428,35 @@ export default function PolicyPlansEnquiry() {
                     Thanks! We've received your enquiry.
                   </p>
                 )}
-                {sendError && (
-                  <p className="text-center text-sm text-red-400">
-                    ⚠ {sendError}
-                  </p>
-                )}
-              </form>
-            </div>
-          </section>
-        </div>
+              </div>
+              <input type="hidden" name="enquiry_id" value={enquiryId} />
+              <button
+                type="submit"
+                disabled={sending}
+               className="w-full rounded-lg bg-amber-400 py-3 text-sm font-bold uppercase tracking-wider text-blue-950 transition-colors hover:bg-amber-300 disabled:opacity-60 disabled:cursor-not-allowed"
+               >
+               {sending ? "Sending..." : "Submit Enquiry"}
+              </button>
+
+              {submitted && (
+               <div className="text-center space-y-1">
+                <p className="text-sm text-emerald-400">
+                Thanks! We've received your enquiry.
+                </p>
+                <p className="text-xs text-blue-400">
+                 Reference ID:{" "}
+                <span className="text-amber-400 font-mono font-semibold">{enquiryId}</span>
+                </p>
+                </div>
+               )}
+             {sendError && (
+              <p className="text-center text-sm text-red-400">
+             ⚠ {sendError}
+            </p>
+            )}
+            </form>
+          </div>
+        </section>
       </div>
     </>
   );
