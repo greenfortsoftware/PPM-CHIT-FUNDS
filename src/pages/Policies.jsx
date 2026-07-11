@@ -241,7 +241,7 @@ const POLICIES = [
       },
       {
         name: "Jan Suraksha",
-        plan: 721,
+        plan: 880,
         category: "Micro",
         age: "18–55 yrs",
       },
