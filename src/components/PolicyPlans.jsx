@@ -258,6 +258,7 @@
 import { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
 import ChitPlans from "./ChitPlans";
+import { supabase } from "../supabase";
 import {
   TrendingUp,
   Landmark,
@@ -404,7 +405,16 @@ export default function PolicyPlansEnquiry() {
   setSendError("");
   setSending(true);
 
-const id = `ENQ-${String(Date.now()).slice(-6)}${Math.floor(Math.random() * 10)}`;
+const generateEnquiryId = async () => {
+  const now = new Date();
+  const month = now.toLocaleString('en-US', { month: 'short' }).toUpperCase();
+  const year = String(now.getFullYear()).slice(-2);
+  const { data, error } = await supabase.rpc('increment_enquiry_counter');
+  if (error) throw error;
+  return `PPM-${month}${year}-${data}`;
+};  
+
+const id = await generateEnquiryId();
 setEnquiryId(id);
 
   try {
