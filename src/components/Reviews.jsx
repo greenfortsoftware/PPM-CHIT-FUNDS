@@ -50,16 +50,20 @@ function ReviewCard({ id, name, review_date, rating, tag, text }) {
 
   return (
     <div className="bg-white rounded-2xl border border-slate-100 p-5 flex flex-col">
-      <div className="flex items-center gap-3 mb-3">
+      {/* ✅ Top row */}
+      <div className="flex gap-3 mb-3">
+        {/* Avatar */}
         <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold shrink-0 ${style.bg} ${style.text}`}>
           {initials(name)}
         </div>
-        <div>
-          <p className="font-semibold text-blue-950 text-sm">{name}</p>
-          <p className="text-xs text-slate-400">{formatDate(review_date)}</p>
-        </div>
-        <div className="ml-auto">
-          <StarRating count={rating} />
+
+        {/* Name + date + stars all in one column block */}
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center justify-between">
+            <p className="font-semibold text-blue-950 text-sm">{name}</p>
+            <StarRating count={rating} />
+          </div>
+          <p className="text-xs text-slate-400 mt-0.5">{formatDate(review_date)}</p>
         </div>
       </div>
 
@@ -67,7 +71,6 @@ function ReviewCard({ id, name, review_date, rating, tag, text }) {
         "{expanded || !isLong ? text : text.slice(0, 120) + "…"}"
       </p>
 
-      {/* ✅ Read more / less */}
       {isLong && (
         <button
           onClick={() => setExpanded(p => !p)}
@@ -77,7 +80,6 @@ function ReviewCard({ id, name, review_date, rating, tag, text }) {
         </button>
       )}
 
-      {/* ✅ Tag color */}
       <span className={`inline-block mt-3 text-xs px-3 py-1 rounded-full w-fit ${tagStyle}`}>
         {tag}
       </span>
