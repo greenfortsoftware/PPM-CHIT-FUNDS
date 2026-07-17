@@ -9,7 +9,6 @@ const AVATAR_STYLES = {
 };
 const DEFAULT_STYLE = { bg: "bg-amber-100", text: "text-amber-800" };
 
-// ✅ Tag colors
 const TAG_STYLES = {
   "Chit Fund":   "bg-blue-50 text-blue-700",
   "ULIP":        "bg-purple-50 text-purple-700",
@@ -23,9 +22,17 @@ const TAG_STYLES = {
 };
 const DEFAULT_TAG = "bg-slate-100 text-slate-600";
 
+// Set the exact review IDs you want pinned as the first 3 cards, in order.
+// Get these from your Supabase "reviews" table (the `id` column).
+const FEATURED_IDS = [
+  "REPLACE_WITH_REVIEW_ID_1",
+  "REPLACE_WITH_REVIEW_ID_2",
+  "REPLACE_WITH_REVIEW_ID_3",
+];
+
 function StarRating({ count }) {
   return (
-    <div className="flex gap-0.5">
+    <div className="flex gap-0.5 shrink-0">
       {[1, 2, 3, 4, 5].map((i) => (
         <span key={i} className={i <= count ? "text-amber-400" : "text-slate-300"}>★</span>
       ))}
@@ -41,7 +48,6 @@ function formatDate(dateStr) {
   return new Date(dateStr).toLocaleDateString("en-US", { month: "long", year: "numeric" });
 }
 
-// ✅ Read more card
 function ReviewCard({ id, name, review_date, rating, tag, text }) {
   const [expanded, setExpanded] = useState(false);
   const style = AVATAR_STYLES[tag] ?? DEFAULT_STYLE;
@@ -49,18 +55,15 @@ function ReviewCard({ id, name, review_date, rating, tag, text }) {
   const isLong = text.length > 120;
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-100 p-5 flex flex-col">
-      {/* ✅ Top row */}
+    <div className="bg-white rounded-2xl border border-slate-100 p-4 sm:p-5 flex flex-col">
       <div className="flex gap-3 mb-3">
-        {/* Avatar */}
         <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold shrink-0 ${style.bg} ${style.text}`}>
           {initials(name)}
         </div>
 
-        {/* Name + date + stars all in one column block */}
         <div className="flex-1 min-w-0">
-          <div className="flex items-center justify-between">
-            <p className="font-semibold text-blue-950 text-sm">{name}</p>
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <p className="font-semibold text-blue-950 text-sm truncate">{name}</p>
             <StarRating count={rating} />
           </div>
           <p className="text-xs text-slate-400 mt-0.5">{formatDate(review_date)}</p>
@@ -122,10 +125,16 @@ export default function Reviews() {
   if (loading) return <p className="text-center py-10 text-slate-500">Loading reviews...</p>;
   if (error) return <p className="text-center py-10 text-red-600">Failed to load reviews: {error}</p>;
 
-  const sorted = [
-    ...reviews.slice(0, 3),
-    ...reviews.slice(3).sort((a, b) => b.rating - a.rating),
-  ];
+  // Pinned reviews first (in the order listed in FEATURED_IDS),
+  // everything else sorted by highest rating.
+  const featured = FEATURED_IDS
+    .map((id) => reviews.find((r) => r.id === id))
+    .filter(Boolean);
+  const featuredIdSet = new Set(featured.map((r) => r.id));
+  const rest = reviews
+    .filter((r) => !featuredIdSet.has(r.id))
+    .sort((a, b) => b.rating - a.rating);
+  const sorted = [...featured, ...rest];
 
   return (
     <section className="bg-slate-100 px-4 py-10 md:px-8">
@@ -138,21 +147,21 @@ export default function Reviews() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-3 gap-4 mb-8">
+        <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-8">
           {[
             { num: stats.avg, label: "Average rating", sub: "★★★★★" },
             { num: `${stats.count}+`, label: "Happy clients" },
             { num: `${new Date().getFullYear() - FOUNDED_YEAR}+`, label: "Years of trust" },
           ].map(({ num, label, sub }) => (
-            <div key={label} className="bg-white rounded-xl border border-slate-100 p-4 text-center">
-              <p className="text-3xl font-bold text-blue-950">{num}</p>
-              {sub && <p className="text-amber-400 text-sm">{sub}</p>}
-              <p className="text-sm text-slate-500 mt-1">{label}</p>
+            <div key={label} className="bg-white rounded-xl border border-slate-100 px-2 py-3 sm:p-4 text-center">
+              <p className="text-xl sm:text-3xl font-bold text-blue-950">{num}</p>
+              {sub && <p className="text-amber-400 text-xs sm:text-sm">{sub}</p>}
+              <p className="text-[11px] sm:text-sm text-slate-500 mt-1 leading-tight">{label}</p>
             </div>
           ))}
         </div>
 
-        {/* ✅ Scrollable review box — fixed height, no page stretch */}
+        {/* Scrollable review box */}
         <div className="overflow-y-auto max-h-[520px] pr-1 rounded-xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {sorted.map((r) => (
@@ -175,10 +184,10 @@ export default function Reviews() {
       {/* Popup */}
       {showForm && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+          className="fixed inset-0 z-50 flex items-stretch sm:items-center justify-center bg-black/50 sm:p-4"
           onClick={(e) => { if (e.target === e.currentTarget) setShowForm(false); }}
         >
-          <div className="w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-2xl">
+          <div className="w-full h-full sm:h-auto sm:max-w-lg sm:max-h-[90vh] overflow-y-auto sm:rounded-2xl">
             <ReviewForm
               onClose={() => setShowForm(false)}
               onReviewAdded={(newReview) => {
