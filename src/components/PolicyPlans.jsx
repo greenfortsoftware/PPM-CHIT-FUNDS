@@ -258,6 +258,7 @@
 import { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
 import ChitPlans from "./ChitPlans";
+import Reviews from "./Reviews";
 import { supabase } from "../supabase";
 import {
   TrendingUp,
@@ -273,6 +274,7 @@ import {
   Phone,
   Mail,
   Clock,
+  HandCoins,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -332,6 +334,14 @@ const POLICY_PLANS = [
     icon: PiggyBank,
     bg: "bg-pink-100",
     fg: "text-pink-600",
+  },
+  {
+    title: "Micro",
+    description:
+      "Affordable micro insurance plan offering essential financial protection. Ideal for individuals and families with low premium payments.",
+    icon: HandCoins,
+    bg: "bg-orange-100",
+    fg: "text-orange-600",
   },
 ];
 
@@ -565,7 +575,7 @@ setEnquiryId(id);
             </button>
           )}
         </section>
-
+        
         {/*  Enquiry */}
         <section className="overflow-hidden rounded-2xl shadow-sm grid grid-cols-1 md:grid-cols-3">
           {/* Left info panel */}
@@ -700,8 +710,12 @@ setEnquiryId(id);
             </form>
           </div>
         </section>
+        {/*  Reviews */}
+        <Reviews />
       </div>
     </div>
+    
+
   </>
   );
 }
