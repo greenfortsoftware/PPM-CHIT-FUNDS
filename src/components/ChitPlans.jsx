@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 const CHIT_PLANS = [
   {
     icon: CalendarDays,
-    title: "Daily Chit",
+    title: "Daily Collection",
     subtitle:
       "Save daily in small amounts and build a big fund. Ideal for short-term needs.",
     details:
@@ -19,32 +19,32 @@ const CHIT_PLANS = [
   },
   {
     icon: Users,
-    title: "Weekly Chit",
+    title: "Weekly Collection",
     subtitle: "Save weekly and enjoy attractive returns on a regular basis.",
     details:
       "Weekly chits offer a balanced saving frequency suitable for salaried individuals and traders. Contributions are made every week and the prize is distributed on a weekly auction basis.",
   },
   {
     icon: CalendarDays,
-    title: "Monthly Chit",
+    title: "Monthly Collection",
     subtitle: "A popular saving plan with higher returns and flexible options.",
     details:
       "Monthly chit funds are the most popular option. They suit salaried employees and professionals who prefer monthly financial planning. Prize distribution happens every month through a fair bidding system.",
   },
-  {
-    icon: Users,
-    title: "Quarterly Chit",
-    subtitle: "Save quarterly and get better returns with less commitment.",
-    details:
-      "Quarterly chit funds are suited for seasonal businesses and farmers who receive income periodically. The lower contribution frequency makes it easier to manage larger chit amounts.",
-  },
-  {
-    icon: Star,
-    title: "Special Chit",
-    subtitle: "Customized chit plans for your special needs and goals.",
-    details:
-      "Special chit plans are tailored for high-value savings goals such as home construction, business expansion, or children's education. Plans are customised based on your financial requirements.",
-  },
+  // {
+  //   icon: Users,
+  //   title: "Quarterly Chit",
+  //   subtitle: "Save quarterly and get better returns with less commitment.",
+  //   details:
+  //     "Quarterly chit funds are suited for seasonal businesses and farmers who receive income periodically. The lower contribution frequency makes it easier to manage larger chit amounts.",
+  // },
+  // {
+  //   icon: Star,
+  //   title: "Special Chit",
+  //   subtitle: "Customized chit plans for your special needs and goals.",
+  //   details:
+  //     "Special chit plans are tailored for high-value savings goals such as home construction, business expansion, or children's education. Plans are customised based on your financial requirements.",
+  // },
 ];
 
 const AMBER_BAR = "mt-2 h-1 w-12 rounded-full bg-amber-400";
@@ -52,7 +52,7 @@ const CTA_LINK =
   "group flex shrink-0 items-center gap-1.5 rounded-full bg-[#163F88] px-4 py-2 text-sm font-semibold text-white no-underline shadow-md transition-all duration-300 hover:bg-[#F7B500] hover:text-[#163F88] hover:shadow-lg";
 
 const ChitPlans = () => {
-  const [openIndex, setOpenIndex] = useState(0);
+  const [openIndex, setOpenIndex] = useState(null);
 
   return (
     <section className="overflow-hidden rounded-2xl bg-white shadow-sm">
