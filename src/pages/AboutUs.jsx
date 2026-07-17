@@ -291,10 +291,10 @@ export default function AboutUs() {
           </div>
 
           {/* Legal Information */}
-          <div className="bg-white border border-gray-100 p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-            <div className="h-12 w-12 rounded-xl bg-emerald-50 flex items-center justify-center mb-4 text-emerald-600">
-              <Shield className="w-6 h-6" />
-            </div>
+          <div className="group bg-white border border-gray-100 p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+             <div className="h-12 w-12 rounded-xl bg-emerald-50 flex items-center justify-center mb-4 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-300">
+               <Shield className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" />
+             </div>
             <h3 className="font-bold text-gray-900 text-lg mb-3">
               Legal Information
             </h3>
