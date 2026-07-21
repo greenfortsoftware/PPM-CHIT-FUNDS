@@ -41,7 +41,7 @@ const contactItems = [
         
       </>
     ),
-    subtitle: "Closed on Public Holidays",
+    subtitle: "",
     border: "border-purple-500",
   },
 ];
