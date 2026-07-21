@@ -91,20 +91,34 @@ const Navbar = () => {
             isOpen ? "max-h-[500px] pb-4" : "max-h-0"
           }`}
         >
-          <ul className="flex flex-col gap-4 pt-2 border-t">
+          <ul className="flex flex-col gap-1 pt-2 border-t">
             {navItems.map(({ label, to }) => (
               <li key={to}>
                 <NavLink
                   to={to}
                   end={to === "/"}
                   onClick={() => setIsOpen(false)}
+                  style={{ textDecoration: "none" }}
                   className={({ isActive }) =>
-                    `block py-2 text-sm font-semibold uppercase hover:text-blue-900 no-underline ${
-                      isActive ? "text-blue-900" : "text-gray-700"
+                    `group relative inline-block py-3 px-2 text-sm font-semibold uppercase tracking-wide no-underline transition-colors ${
+                      isActive ? "text-blue-900" : "text-black hover:text-blue-900"
                     }`
                   }
                 >
-                  {label}
+                  {({ isActive }) => (
+                    <>
+                      {label}
+                      <span
+                        className={`
+                          absolute left-2 -bottom-0.5
+                          h-0.5 bg-yellow-400 rounded
+                          transition-all duration-300
+                          group-hover:w-[calc(100%-1rem)]
+                          ${isActive ? "w-[calc(100%-1rem)]" : "w-0"}
+                        `}
+                      />
+                    </>
+                  )}
                 </NavLink>
               </li>
             ))}
