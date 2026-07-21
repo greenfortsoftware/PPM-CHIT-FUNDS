@@ -19,7 +19,7 @@ const DIRECTORS = [
     role: "Chief Lic Advisor, Star Health Insurance",
     phone: "+91 94437 35490",
     email: "shengaippmchits@gmail.com",
-    photo: "/images/murugesan.jpg",
+    photo: "/images/murugesan.webp",
   },
   {
     name: "Mrs M. Arumugathammal Murugesan",
@@ -158,45 +158,45 @@ export default function AboutUs() {
           </div>
 
           <div className="grid sm:grid-cols-2 gap-6">
-            {DIRECTORS.map((director) => (
-              <div
-                key={director.name}
-                className="group bg-gradient-to-br from-[#163F88] to-[#1a4d9e] rounded-2xl p-5 flex items-center gap-4 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 relative overflow-hidden border border-white/10"
-              >
-                <div className="absolute -right-8 -bottom-8 w-32 h-32 bg-white/5 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
-                <div className="absolute -left-8 -top-8 w-24 h-24 bg-[#F7B500]/5 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
+  {DIRECTORS.map((director) => (
+    <div
+      key={director.name}
+      className="group bg-gradient-to-br from-[#163F88] to-[#1a4d9e] rounded-2xl p-5 flex flex-col sm:flex-row items-center gap-4 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 relative overflow-hidden border border-white/10 text-center sm:text-left"
+    >
+      <div className="absolute -right-8 -bottom-8 w-32 h-32 bg-white/5 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
+      <div className="absolute -left-8 -top-8 w-24 h-24 bg-[#F7B500]/5 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
 
-                <div className="relative z-10 w-20 h-20 rounded-xl bg-white/10 border-2 border-white/20 flex items-center justify-center overflow-hidden shrink-0 shadow-inner group-hover:border-[#F7B500]/50 transition-colors duration-300">
-                  {director.photo ? (
-                    <img src={director.photo} alt={director.name} className="w-full h-full object-cover" />
-                  ) : (
-                    <User className="w-10 h-10 text-white/70 group-hover:text-[#F7B500] transition-colors" />
-                  )}
-                </div>
+      <div className="relative z-10 w-20 h-20 rounded-xl bg-white/10 border-2 border-white/20 flex items-center justify-center overflow-hidden shrink-0 shadow-inner group-hover:border-[#F7B500]/50 transition-colors duration-300">
+        {director.photo ? (
+          <img src={director.photo} alt={director.name} className="w-full h-full object-cover" />
+        ) : (
+          <User className="w-10 h-10 text-white/70 group-hover:text-[#F7B500] transition-colors" />
+        )}
+      </div>
 
-                <div className="relative z-10 space-y-1.5">
-                  <p className="text-white font-bold text-lg tracking-wide leading-tight">{director.name}</p>
-                  {director.role && (
-                    <p className="text-[#F7B500] text-xs font-semibold bg-white/10 px-2.5 py-0.5 rounded-full inline-block">
-                      {director.role}
-                    </p>
-                  )}
-                  {director.phone && (
-                    <p className="text-blue-100/80 text-xs flex items-center gap-1.5 pt-1 hover:text-white transition-colors">
-                      <Phone className="w-3.5 h-3.5 text-[#F7B500]" />
-                      {director.phone}
-                    </p>
-                  )}
-                  {director.email && (
-                    <p className="text-blue-100/80 text-xs flex items-center gap-1.5 hover:text-white transition-colors">
-                      <Mail className="w-3.5 h-3.5 text-[#F7B500]" />
-                      <span className="opacity-70">Email:</span> {director.email}
-                    </p>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
+      <div className="relative z-10 space-y-1.5 flex flex-col items-center sm:items-start">
+        <p className="text-white font-bold text-lg tracking-wide leading-tight">{director.name}</p>
+        {director.role && (
+          <p className="text-[#F7B500] text-xs font-semibold bg-white/10 px-2.5 py-0.5 rounded-full inline-block">
+            {director.role}
+          </p>
+        )}
+        {director.phone && (
+          <p className="text-blue-100/80 text-xs flex items-center gap-1.5 pt-1 hover:text-white transition-colors">
+            <Phone className="w-3.5 h-3.5 text-[#F7B500]" />
+            {director.phone}
+          </p>
+        )}
+        {director.email && (
+          <p className="text-blue-100/80 text-xs flex items-center gap-1.5 hover:text-white transition-colors">
+            <Mail className="w-3.5 h-3.5 text-[#F7B500]" />
+            <span className="opacity-70">Email:</span> {director.email}
+          </p>
+        )}
+      </div>
+    </div>
+  ))}
+</div>
         </section>
 
         {/* ===== MISSION, VISION, LEGAL ===== */}

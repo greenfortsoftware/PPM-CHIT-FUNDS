@@ -59,9 +59,7 @@ const ChitPlans = () => {
       {/* Header */}
       <div className="flex items-center justify-between gap-4 px-6 md:px-8 pt-6 pb-4">
         <div className="flex items-center gap-4">
-          <div className="w-11 h-11 rounded-full bg-[#EEF3FB] flex items-center justify-center shrink-0">
-            <Users className="w-5 h-5 text-[#163F88]" strokeWidth={1.5} />
-          </div>
+          
           <div>
             <h2 className="text-2xl font-bold text-blue-950">Chit Plans</h2>
             <div className={AMBER_BAR} />
