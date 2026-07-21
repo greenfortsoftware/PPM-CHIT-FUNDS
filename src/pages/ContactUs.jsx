@@ -166,7 +166,7 @@ export default function Contact() {
                 <div className="rounded-xl overflow-hidden border border-gray-100 shadow-sm min-h-[220px]">
                   <iframe
                     title="Shengai PPM Chits Location"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.9810424756793!2d77.24600887554071!3d8.973890991085316!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b06816d1c7d4bbf%3A0x204643cddc0ba6cd!2sShengai%20PPM%20Chits%20Pvt.%20Ltd!5e1!3m2!1sen!2sin!4v1784519754761!5m2!1sen!2sin"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.9810424756793!2d77.24600887554071!3d8.973890991085316!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b06816d1c7d4bbf%3A0x204643cddc0ba6cd!2sShengai%20PPM%20Chits%20Pvt.%20Ltd!5e0!3m2!1sen!2sin!4v1784519754761!5m2!1sen!2sin"
                     width="100%"
                     height="100%"
                     style={{ border: 0, minHeight: "300px" }}
