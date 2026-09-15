@@ -22,6 +22,11 @@ const GALLERY_ITEMS = [
     bg: "bg-blue-50",
     image: "/images/gallery/coi.jpg",
   },
+  {
+    title: "Greetings from the Chairman",
+    bg: "bg-blue-50",
+    image: "/images/gallery/Greetings.jpg",
+  },
 ];
 
 const Gallery = () => {
@@ -115,34 +120,37 @@ const Gallery = () => {
       </div>
 
       {/* Lightbox */}
-      {selected && (
-        <div
-          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center px-4"
-          onClick={() => setSelected(null)}
-        >
-          <div
-            className="relative max-w-3xl w-full bg-white rounded-2xl overflow-hidden shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              onClick={() => setSelected(null)}
-              className="absolute top-3 right-3 bg-white rounded-full p-1 shadow z-10"
-            >
-              <X className="w-5 h-5 text-gray-700" />
-            </button>
-            <img
-              src={selected.image}
-              alt={selected.title}
-              className="w-full h-auto object-contain max-h-[80vh]"
-            />
-            <div className="px-5 py-3 bg-white">
-              <p className="text-sm font-semibold text-[#163F88]">
-                {selected.title}
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
+{selected && (
+  <div
+    className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-2 sm:p-4"
+    onClick={() => setSelected(null)}
+  >
+    {/* Close Button */}
+    <button
+      type="button"
+      onClick={() => setSelected(null)}
+      className="absolute right-4 top-4 z-50 rounded-full bg-white p-2 shadow-lg transition hover:bg-gray-200"
+    >
+      <X className="h-6 w-6 text-gray-700" />
+    </button>
+
+    {/* Large Image */}
+    <img
+      src={selected.image}
+      alt={selected.title}
+      onClick={(e) => e.stopPropagation()}
+      className="
+        max-h-[95vh]
+        max-w-[98vw]
+        w-auto
+        h-auto
+        object-contain
+        rounded-lg
+        shadow-2xl
+      "
+    />
+  </div>
+)}
     </main>
   );
 };
